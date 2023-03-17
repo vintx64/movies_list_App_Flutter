@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:flutter/widgets.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:movies_list_task/views/home_view.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
   runApp(const MoviesList());
 }
 
