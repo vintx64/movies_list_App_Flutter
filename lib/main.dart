@@ -5,9 +5,14 @@ import 'package:movies_list_task/cubit/movie_cubit.dart';
 import 'package:movies_list_task/simple_bloc_observer.dart';
 import 'package:movies_list_task/views/home_view.dart';
 
+import 'constants.dart';
+import 'models/movie_model.dart';
+
 void main() async {
   await Hive.initFlutter();
   Bloc.observer = SimpleBlocObserver();
+  Hive.registerAdapter(MovieModelAdapter());
+  await Hive.openBox<MovieModel>(kMovieBox);
   runApp(const MoviesList());
 }
 
