@@ -13,6 +13,7 @@ void main() async {
   Bloc.observer = SimpleBlocObserver();
   Hive.registerAdapter(MovieModelAdapter());
   await Hive.openBox<MovieModel>(kMovieBox);
+
   runApp(const MoviesList());
 }
 
