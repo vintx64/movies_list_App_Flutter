@@ -2,9 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:movies_list_task/constants.dart';
-
-import '../models/movie_model.dart';
 
 // make a get request
 class ApiService {
@@ -20,22 +17,5 @@ class ApiService {
       throw Exception(
           'there is problem with status code ${response.statusCode}');
     }
-  }
-}
-
-class AllMoviesService {
-  Future<List<MovieModel>> getAllMovies() async {
-    // List<dynamic> data = await ApiService().get(url: kUrl, token: null);
-    dynamic data = await ApiService().get(url: kUrl, token: null);
-    List<dynamic> resDynamic = data['results'];
-    // List<MovieModel> movieList = resDynamic.cast<MovieModel>();
-    List<MovieModel> movieList = [];
-    for (int i = 0; i < resDynamic.length; i++) {
-      movieList.add(
-        MovieModel.fromJson(resDynamic[i]),
-      );
-    }
-
-    return movieList;
   }
 }

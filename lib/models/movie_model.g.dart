@@ -18,8 +18,8 @@ class MovieModelAdapter extends TypeAdapter<MovieModel> {
     };
     return MovieModel(
       movieName: fields[2] as String,
-      movieYear: fields[3] as int,
-      movieRate: fields[4] as double,
+      movieYear: fields[3] as dynamic,
+      movieRate: fields[4] as dynamic,
       id: fields[0] as dynamic,
       image: fields[1] as String,
     );

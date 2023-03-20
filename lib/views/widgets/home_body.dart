@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:movies_list_task/models/movie_model.dart';
-import 'package:movies_list_task/services/api_service.dart';
-import 'package:movies_list_task/views/widgets/movie_item.dart';
+import 'package:movies_list_task/views/viewmodel/home_view_model.dart';
+import 'package:stacked/stacked.dart';
+
+import 'movies_list_view.dart';
 
 class HomeBody extends StatelessWidget {
   const HomeBody({super.key});
@@ -17,19 +18,14 @@ class MovieList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<MovieModel>>(
-        future: AllMoviesService().getAllMovies(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            List<MovieModel> movies = snapshot.data!;
-
-            return ListView.builder(
-                itemCount: movies.length,
-                itemBuilder: (context, index) {
-                  return MovieItem(
-                    movie: movies[index],
-                  );
-                });
+    return ViewModelBuilder<HomeViewModel>.reactive(
+        viewModelBuilder: () => HomeViewModel(),
+        onViewModelReady: (model) => model.getData(),
+        builder: (context, model, child) {
+          if (model.movieList.isNotEmpty) {
+            return MoviesListView(
+              model: model,
+            );
           } else {
             return Center(
               child: Column(

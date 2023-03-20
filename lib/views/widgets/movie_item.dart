@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import '../../models/movie_model.dart';
 
 class MovieItem extends StatelessWidget {
-  MovieItem({
+  const MovieItem({
     super.key,
     required this.movie,
   });
-  MovieModel movie;
+  final MovieModel movie;
   @override
   Widget build(BuildContext context) {
     return Column(

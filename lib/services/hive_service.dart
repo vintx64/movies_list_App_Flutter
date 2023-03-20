@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:hive/hive.dart';
 
 class HiveService {
@@ -8,7 +9,7 @@ class HiveService {
   }
 
   addBoxes<T>(List<T> items, String boxName) async {
-    print("adding boxes");
+    debugPrint("adding boxes");
     final openBox = await Hive.openBox(boxName);
 
     for (var item in items) {
