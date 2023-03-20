@@ -10,9 +10,9 @@ class MovieModel extends HiveObject {
   @HiveField(2)
   final String movieName;
   @HiveField(3)
-  final int movieYear;
+  final dynamic movieYear;
   @HiveField(4)
-  final double movieRate;
+  final dynamic movieRate;
 
   MovieModel(
       {required this.movieName,
@@ -20,9 +20,7 @@ class MovieModel extends HiveObject {
       required this.movieRate,
       this.id,
       required this.image});
-  factory MovieModel.fromJson(dynamic data) {
-    var jsonData = data['results'];
-
+  factory MovieModel.fromJson(jsonData) {
     return MovieModel(
         movieName: jsonData['title'],
         movieYear: jsonData['release_date'],
