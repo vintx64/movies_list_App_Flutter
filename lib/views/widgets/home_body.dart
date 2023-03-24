@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movies_list_task/views/viewmodel/home_view_model.dart';
 import 'package:stacked/stacked.dart';
 
+import '../repo/movies/movies_repo.dart';
 import 'movies_list_view.dart';
 
 class HomeBody extends StatelessWidget {
@@ -18,8 +18,8 @@ class MovieList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<HomeViewModel>.reactive(
-        viewModelBuilder: () => HomeViewModel(),
+    return ViewModelBuilder<MoviesRepo>.reactive(
+        viewModelBuilder: () => MoviesRepo(),
         onViewModelReady: (model) => model.getData(),
         builder: (context, model, child) {
           if (model.movieList.isNotEmpty) {
