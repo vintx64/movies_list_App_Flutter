@@ -14,7 +14,8 @@ class MovieItem extends StatelessWidget {
       children: [
         ListTile(
           leading: CircleAvatar(
-            backgroundImage: NetworkImage(movie.image),
+            backgroundImage:
+                NetworkImage('https://image.tmdb.org/t/p/w500${movie.image}'),
             radius: 23,
           ),
           title: Padding(
