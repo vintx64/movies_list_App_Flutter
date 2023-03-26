@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/adapters.dart';
-import 'package:movies_list_task/views/home_view.dart';
+import 'package:movies_list_task/src/pages/home_view.dart';
 
-import 'models/movie_model.dart';
-
-void main() async {
-  await Hive.initFlutter();
-  Hive.registerAdapter(MovieModelAdapter());
-
+void main() {
   runApp(const MoviesList());
 }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movies_list_task/views/widgets/home_body.dart';
+
+import '../widgets/home_body.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
