@@ -1,12 +1,8 @@
 import 'dart:io';
-import 'package:flutter/cupertino.dart';
-import 'package:movies_list_task/src/providers/movie_api_provider.dart';
-import 'package:path/path.dart';
-
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
-
 import '../models/movie_model.dart';
+import 'package:path/path.dart' as p;
 
 class DBProvider {
   static Database? _database;
@@ -18,7 +14,7 @@ class DBProvider {
 
   Future<Database> initDB() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    final path = join(documentsDirectory.path, 'movies_manager.db');
+    final path = p.join(documentsDirectory.path, 'movies_manager.db');
 
     return await openDatabase(path, version: 1, onOpen: (db) {},
         onCreate: (Database db, int version) async {
@@ -33,30 +29,18 @@ class DBProvider {
   }
 
   // Insert movies on database
-  createMovie(Movie newMovie) async {
+  createMovie(MovieModel newMovie) async {
     final db = await database;
-    final res = await db.insert('movies', newMovie.toJson());
+    final res = await db.insert('Movies', newMovie.toJson());
 
     return res;
   }
 
-  Future<List<Movie>> getAllMovies() async {
+  Future<List<MovieModel>> getAllMovies() async {
     final db = await database;
-    final res = await db.rawQuery("SELECT * FROM movies");
-
-    List<Movie> list;
-    if (res.isEmpty) {
-      debugPrint('read from Api then add to cache');
-      var apiProvider = MovieApiProvider();
-
-      await apiProvider.getAllMovies();
-      await Future.delayed(const Duration(seconds: 2));
-      list = res.map((c) => Movie.fromJson(c)).toList();
-    } else {
-      debugPrint('read from cache');
-      list = res.map((c) => Movie.fromJson(c)).toList();
-    }
-
+    final res = await db.rawQuery("SELECT * FROM Movies");
+    List<MovieModel> list =
+        res.isNotEmpty ? res.map((c) => MovieModel.fromJson(c)).toList() : [];
     return list;
   }
 }

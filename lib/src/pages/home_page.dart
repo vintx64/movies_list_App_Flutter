@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/home_body.dart';
+import '../widgets/home_page_body.dart';
 
-class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +11,7 @@ class HomeView extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Trending Movies'),
       ),
-      body: const HomeBody(),
+      body: const HomePageBody(),
     );
   }
 }

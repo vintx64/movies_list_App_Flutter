@@ -1,26 +1,26 @@
 import 'dart:convert';
 
-List<Movie> moviesFromJson(String str) =>
-    List<Movie>.from(json.decode(str).map((x) => Movie.fromJson(x)));
+List<MovieModel> moviesFromJson(String str) =>
+    List<MovieModel>.from(json.decode(str).map((x) => MovieModel.fromJson(x)));
 
-String moviesToJson(List<Movie> data) =>
+String moviesToJson(List<MovieModel> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class Movie {
+class MovieModel {
   final int id;
   final String title;
 
   final String releaseDate;
   final dynamic voteAverage;
   final String posterPath;
-  Movie(
+  MovieModel(
       {required this.id,
       required this.title,
       required this.releaseDate,
       required this.voteAverage,
       required this.posterPath});
-  factory Movie.fromJson(Map<String, dynamic> jsonData) {
-    return Movie(
+  factory MovieModel.fromJson(Map<String, dynamic> jsonData) {
+    return MovieModel(
         id: jsonData['id'],
         title: jsonData['title'],
         releaseDate: jsonData['release_date'],
